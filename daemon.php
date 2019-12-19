@@ -43,7 +43,7 @@ if ($type == 's') {
         require __DIR__ . '/FileSyncClient.php';
         new FileSyncClient($port);
     } elseif($option == 'stop') {
-        exec('ps -ef|grep FileSyncClient.php|grep -v grep|cut -c 9-15|xargs kill -9');
+        exec('ps -ef|grep daemon.php|grep -v grep|cut -c 9-15|xargs kill -9');
     }
 }
 
