@@ -1,3 +1,11 @@
+## 依赖inotify和swoole扩展
+使用inotify监听目录 文件变更时自动同步到远程服务器程
+
+```
+pecl install swoole
+pecl install inotify
+```
+
 ## 配置说明
 
 ```
