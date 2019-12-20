@@ -45,12 +45,6 @@ class FileMonitor
             if (!$events) {
                 return;
             }
-            // print_r($events);
-            //print_r($this->watchFiles);
-            // $tmp = [];
-            // foreach($events as $ev){
-            //     $tmp[$ev['name']] = $ev;
-            // }
             foreach ($events as $ev) {
                 if ($ev['mask'] == IN_IGNORED) {
                     continue;
@@ -93,7 +87,6 @@ class FileMonitor
     {
         SCL:
         $client = new \swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_SYNC);
-        // $client = new \swoole_client(SWOOLE_TCP);
         if (!$client->connect($this->conf['SourceFileServer']['host'], $this->conf['SourceFileServer']['port'], -1)) {
             echo "connect failed. Error: {$client->errCode}" . PHP_EOL;
             $client->close();
@@ -101,9 +94,6 @@ class FileMonitor
             goto SCL;
         }
         $client->send($filename);
-        // $str = $client->recv();
-        // $client->close();
-        // return $str;
     }
 
     /**
@@ -121,7 +111,7 @@ class FileMonitor
      */
     public function addEvent($inotifyEvent)
     {
-        $this->events = $inotifyEvent;
+        $this->events |= $inotifyEvent;
     }
     /**
      * 清理所有inotify监听
